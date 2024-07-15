@@ -3,7 +3,11 @@ import { ProductsContollers } from './products.controller';
 
 const router = express.Router();
 
-// Product Route
+// Products Route:-------
+// Posting/creating all data into DB:
 router.post('/', ProductsContollers.createProducts);
+
+// Getting a single data from DB:
+router.get('/:productId', ProductsContollers.getASingleProduct);
 
 export const ProductsRoutes = router;
