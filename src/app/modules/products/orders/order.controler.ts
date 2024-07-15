@@ -1,19 +1,46 @@
 import { Request, Response } from 'express';
+import { z } from 'zod';
 import { OrderServices } from './order.service';
 import { TOrder } from './order.interface';
+import { OrderValidationSchema } from './order.validation';
 
-// Order Creation:
+// const createOrder = async (req: Request, res: Response) => {
+//   try {
+//     const orderData: TOrder = req.body;
+//     const result = await OrderServices.createOrderDB(orderData);
+//     res.status(201).json({
+//       success: true,
+//       message: 'Order created successfully',
+//       data: result,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
+// Order Creation using Zod Validation:---------
 const createOrder = async (req: Request, res: Response) => {
   try {
     const orderData: TOrder = req.body;
-    const result = await OrderServices.createOrderDB(orderData);
+    const zodValidatedOrder = OrderValidationSchema.parse(orderData);
+
+    const result = await OrderServices.createOrderDB(zodValidatedOrder);
+
     res.status(201).json({
       success: true,
       message: 'Order created successfully',
       data: result,
     });
   } catch (err) {
-    console.log(err);
+    if (err instanceof z.ZodError) {
+      res.status(400).json({
+        success: false,
+        message: 'Validation error',
+        errors: err.errors,
+      });
+    } else {
+      console.log('Something went wrong');
+    }
   }
 };
 
