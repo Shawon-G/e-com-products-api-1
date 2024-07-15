@@ -10,4 +10,7 @@ router.post('/', ProductsContollers.createProducts);
 // Getting a single data from DB:
 router.get('/:productId', ProductsContollers.getASingleProduct);
 
+// Updating a data into DB:
+router.put('/:productId', ProductsContollers.productUpdate);
+
 export const ProductsRoutes = router;

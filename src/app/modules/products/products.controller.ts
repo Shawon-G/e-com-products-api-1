@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { ProductServices } from './products.service';
+import { TProducts } from './products.interface';
 
 // create all products ( Posting to DB)
 const createProducts = async (req: Request, res: Response) => {
@@ -39,7 +40,33 @@ const getASingleProduct = async (req: Request, res: Response) => {
   }
 };
 
+// update product controller
+
+const productUpdate = async (req: Request, res: Response) => {
+  try {
+    const productId = req.params.productId;
+    const productData: Partial<TProducts> = req.body;
+    const updatedProduct = await ProductServices.updateProductIntoDB(
+      productId,
+      productData,
+    );
+    if (!updatedProduct) {
+      return res.status(404).json({
+        success: false,
+        message: 'Product not found',
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Product updated successfully',
+      data: updatedProduct,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
 export const ProductsContollers = {
   createProducts,
   getASingleProduct,
+  productUpdate,
 };
