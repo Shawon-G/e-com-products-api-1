@@ -4,9 +4,9 @@ e-com-products-api-1
 
 ## To install locally follow these commands
 
-npm install
-npm run build
-npm npm run start:dev
+- npm install
+- npm run build
+- npm npm run start:dev
 
 ## Essentials
 
