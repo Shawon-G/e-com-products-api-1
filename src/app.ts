@@ -14,7 +14,5 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Hello!');
 });
 
-// console.log(process.cwd());
-// G:\MERN-Bootcamp\e-com-products-api-1.env
 
 export default app;
