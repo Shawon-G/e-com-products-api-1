@@ -7,11 +7,10 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (req: Request, res: Response) => {
-  const a = 10;
-  res.send(a);
+  res.send('Hello!');
 });
 
-console.log(process.cwd());
+// console.log(process.cwd());
 // G:\MERN-Bootcamp\e-com-products-api-1.env
 
 export default app;
