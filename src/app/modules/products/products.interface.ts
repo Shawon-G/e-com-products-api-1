@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-export type TVariant = {
+export type TVariants = {
   type: string;
   value: string;
 };
@@ -10,12 +10,12 @@ export type TInventory = {
   inStock: boolean;
 };
 
-export type TProduct = {
+export type TProducts = {
   name: string;
   description: string;
   price: number;
   category: string;
   tags: string[];
-  variants: TVariant[];
+  variants: TVariants[];
   inventory: TInventory;
 };
