@@ -16,4 +16,7 @@ router.put('/:productId', ProductsContollers.productUpdate);
 // Deleting a data from DB:
 router.delete('/:productId', ProductsContollers.productDelete);
 
+// Getting all data from DB:
+router.get('/', ProductsContollers.getAllProducts);
+
 export const ProductsRoutes = router;
